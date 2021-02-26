@@ -3,7 +3,7 @@ pipeline {
     registry = "inamdarsaifu/docker_test"
     registryCredential = 'dockerhub'
   }
-  agent { dockerfile true }
+  agent any 
     stages {
         stage('Hello') {
             steps {
