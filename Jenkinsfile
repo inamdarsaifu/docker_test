@@ -14,7 +14,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 echo 'Git Repository Checkout'
-		git credentialsId: '05e3ddde-f4b2-4c13-8ef4-a5cd32d49a9a', url: 'https://github.com/inamdarsaifu/docker_test.git'
+		git credentialsId: 'git_cred', url: 'https://github.com/inamdarsaifu/docker_test.git'
             }
 	}
         stage('Build Stage') {
