@@ -35,10 +35,9 @@ pipeline {
                 echo 'Push Docker Image Step'
 		docker.withRegistry( '', registryCredential ) {
         	dockerImage.push()
-
+		}
             }
 	}
-	    
 	    
     }
     
