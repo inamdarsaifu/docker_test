@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "inamdarsaifu/docker_test"
+    registryCredential = 'dockerhub'
+  }
     agent any
 
     stages {
@@ -6,6 +10,35 @@ pipeline {
             steps {
                 echo 'Hello World'
             }
-        }
+	}
+        stage('Git Checkout') {
+            steps {
+                echo 'Git Repository Checkout'
+		git credentialsId: '05e3ddde-f4b2-4c13-8ef4-a5cd32d49a9a', url: 'https://github.com/inamdarsaifu/docker_test.git'
+            }
+	}
+        stage('Build Stage') {
+            steps {
+                echo 'Build Step'
+
+            }
+	}
+        stage('Build Docker Image Stage') {
+            steps {
+                echo 'Build Docker Image Step'
+		sh 'docker build -t inamdarsaifu/docker_test:${BUILD_NUMBER} .'
+
+            }
+	}
+        stage('Push Docker Image') {
+            steps {
+                echo 'Push Docker Image Step'
+		sh 'docker push inamdarsaifu/docker_test:2'
+
+            }
+	}
+	    
+	    
     }
+    
 }
